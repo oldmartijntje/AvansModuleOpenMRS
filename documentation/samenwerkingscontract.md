@@ -40,8 +40,6 @@ ondertekenden:
     - Bij elke standup wordt er in de `documentation/standups/` folder een markdown bestandje aangemaakt vanaf het template. Hierin worden de aanwezigen vastgesteld en mogelijke belangrijke punten samengevat. Het markdown bestand heeft de titel van de datum. (`YYYY-MM-DD.md`)
 - **Consequenties**
     - Bij herhaaldelijk niet nakomen van afspraken zullen we samen met een docent evalueren en naar verbeterpunten zoeken. Bij asociaal gedrag wordt direct actie ondernomen met een gesprek onder begeleiding van een docent. Het disrespecteren van ideeën of meningen van anderen is een serieuze zaak en valt dus onder asociaal gedrag.
-    - Piemelstraf
-    - Zweepslagen
 - **Uitzonderingen en bemiddeling**
     - Er is altijd de mogelijkheid dat er iets niet lukt volgens de bovenstaande regels, in dit geval werkt er een democratie.
         - Als er een gelijke stemming is wordt er gevraagd naar de mening van een leraar, of een niet betrokken student.
