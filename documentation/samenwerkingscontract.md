@@ -18,5 +18,7 @@
     - Niemand wordt verplicht om fysiek aanwezig te zijn op school wanneer er geen lessen zijn, zolang je je werk doet.
 - Standups
     - Elke dag hebben we een standup, tenzij we op school les hebben, dan bespreken we dit gwn op school.
-
+- Strafjes
+    - Piemelstraf
+    - Zweepslagen
 
