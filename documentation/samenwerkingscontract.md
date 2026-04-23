@@ -24,9 +24,11 @@ ondertekenden:
             - Dit gebeurt ook in `#afmeldingen`.
 - **Samenwerking**
     - We werken met Jira & SCRUM
-        - [link](https://angel-zeng.atlassian.net/jira/software/projects/QA1/boards/167)
+        - [link](https://angel-zeng.atlassian.net/jira/software/projects/QA1/boards/167) naar SCRUM bord in Jira
     - We werken met Github
-        - [link](https://github.com/oldmartijntje/AvansModuleOpenMRS)
+        - [link](https://github.com/oldmartijntje/AvansModuleOpenMRS) naar Github repo
+    - Voor documentatie gebruiken we de `documentation/` folder in de Github repo. Voor actuele samenwerkings momenten wordt de Google docs gebruikt en wordt daarna omgezet naar een Github notitie.
+        - [link](https://docs.google.com/document/d/164v8J_01jmpcfqPYaygWQhK2QW3A8IyNUvE13m3JcjQ/edit?tab=t.uydd2jomzbh4) naar google docs
 - **Aanwezigheid**
     - Een schooldag is van 10:00 tot 17:00
         - Buiten deze uren om wordt niemand verplicht om te werken, maar kunnen er wel besprekingen gepland worden.
