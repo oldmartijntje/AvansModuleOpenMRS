@@ -2,7 +2,6 @@
 status: Accepted
 date: 2022-11-22
 deciders: ZIO
-
 ---
 
 # AD: System Decomposition into Logical Layers
