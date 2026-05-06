@@ -1,33 +1,35 @@
 ---
-status: Reviewing
+status: Accepted
 date: 2026-05-06
 deciders: angel, chris, martijn
 ---
-
 # AD: Hoe koppelt de communicatiemodule aan OpenMRS?
-## Context and Problem Statement
-De communicatiemodule heeft afspraakdata nodig van OpenMRS om notificaties te kunnen versturen. De vraag is via welk mechanisme deze data bij de module terechtkomt. Dit is geen triviale keuze: de module moet meerdere OpenMRS-instanties bedienen, moet bestand zijn tegen downtime aan beide kanten, en moet aansluiten op de HL7/FHIR-standaard die OpenMRS hanteert.
 
-Er zijn drie fundamenteel verschillende benaderingen denkbaar: de module vraagt zelf periodiek data op bij OpenMRS (polling), OpenMRS stuurt data naar de module wanneer er iets verandert (webhook/push), of OpenMRS publiceert events op een gedeelde berichtenbus waar de module op luistert (event streaming).
+## Context and Problem Statement
+De communicatiemodule heeft afspraakdata nodig van OpenMRS om notificaties te kunnen versturen. De vraag is via welk mechanisme deze data bij de module terechtkomt. Dit is geen triviale keuze: de module moet meerdere OpenMRS-instanties bedienen, moet bestand zijn tegen downtime aan beide kanten, en moet aansluiten op de integratiemogelijkheden die OpenMRS daadwerkelijk biedt.
+
+Als onderdeel van het onderzoek is de OpenMRS referentie-applicatie lokaal opgestart via Docker en zijn de beschikbare API-mogelijkheden systematisch onderzocht. De FHIR2 module bleek het `Appointment` resource type niet te ondersteunen in de geïnstalleerde versie. De standaard REST API vereist een UUID voor individuele opzoekingen en biedt geen lijst- of zoekfunctionaliteit. De Bahmni Appointment Scheduling module bleek wel geïnstalleerd te zijn en biedt een werkende zoekendpoint op basis van een datumbereik.
+
+Er zijn drie fundamenteel verschillende benaderingen onderzocht: de module vraagt zelf periodiek data op bij OpenMRS (polling), OpenMRS stuurt data naar de module wanneer er iets verandert (webhook/push), of OpenMRS publiceert events op een gedeelde berichtenbus waar de module op luistert (event streaming).
 
 ---
 ## Considered Options
 
-### Optie A: Polling via de OpenMRS FHIR REST API
-De communicatiemodule bevraagt periodiek de OpenMRS FHIR API om aankomende afspraken op te halen. De scheduler draait bijvoorbeeld elke minuut en vraagt: "geef mij alle afspraken die over 24 uur of 1 uur plaatsvinden."
+### Optie A: Polling via de Bahmni Appointments REST API
+De communicatiemodule bevraagt periodiek de OpenMRS REST API om aankomende afspraken op te halen. De scheduler draait elke minuut en vraagt alle afspraken op binnen een tijdvenster van nu tot 25 uur vooruit.
 
 Voordelen:
-- Eenvoudig te implementeren: OpenMRS biedt via de FHIR2 module een `/Appointment` endpoint aan
-- De module hoeft aan OpenMRS-kant verder niks te installeren of configureren buiten de FHIR2 module zelf
-- Volledig in lijn met de FHIR-standaard, data komt al in het juiste formaat binnen
+- Werkend en bevestigd via hands-on onderzoek op de echte OpenMRS installatie
+- Geen installatie of configuratie vereist aan OpenMRS-kant buiten de reeds aanwezige Bahmni module
 - Bij downtime van de module gaan er geen events verloren: bij herstel wordt gewoon opnieuw gepolled
-- Schaalt goed naar meerdere OpenMRS-instanties: elke tenant krijgt een volledig onafhankelijke polling-configuratie, waardoor instanties elkaar niet beïnvloeden
+- Schaalt goed naar meerdere OpenMRS-instanties: elke tenant krijgt een volledig onafhankelijke polling-configuratie
 
 Nadelen:
 - Polling introduceert een kleine vertraging (tot 1 minuut) tussen afspraakaanmaak en detectie
 - Bij veel instanties groeit het aantal uitgaande API-calls lineair
 - OpenMRS moet bereikbaar zijn op het moment van polling: tijdelijke downtime betekent dat de module even blind is
 - Vraagt om goede idempotentie-logica zodat afspraken niet dubbel worden verwerkt
+- De response bevat geen telefoonnummer van de patiënt, wat een tweede API-call vereist naar `GET /openmrs/ws/rest/v1/patient/{uuid}`
 
 ### Optie B: Webhooks vanuit OpenMRS
 OpenMRS stuurt een HTTP POST naar de communicatiemodule zodra een afspraak wordt aangemaakt, gewijzigd of geannuleerd. OpenMRS heeft hiervoor de REST Hook module beschikbaar.
@@ -53,29 +55,32 @@ Voordelen:
 
 Nadelen:
 - Vereist installatie van de AtomFeed module aan OpenMRS-kant
-- De feed is niet FHIR-native; de module moet zelf de mapping doen van OpenMRS-datamodel naar FHIR Appointment
+- De feed is niet direct gekoppeld aan de Bahmni Appointments module; mapping van het datamodel is handmatig werk
 - Complexere infrastructuur dan polling
 - Minder geschikt voor het SaaS-model: de module moet per tenant een aparte feed-positie bijhouden en de feed-URL kennen
 
 ---
 ## Decision Outcome
-**Gekozen: Optie A — Polling via de OpenMRS FHIR REST API**
+**Gekozen: Optie A — Polling via de Bahmni Appointments REST API**
 
 **Justification**
-De kernafweging gaat over betrouwbaarheid versus complexiteit. Webhooks lijken aantrekkelijk vanwege de real-time aard, maar het verlies van events bij downtime is in een medische context onaanvaardbaar zonder aanvullende retry-infrastructuur aan OpenMRS-kant die we niet kunnen garanderen. AtomFeed lost dit op, maar introduceert installatieverplichtingen bij elke klant en een niet-FHIR data-formaat.
+Tijdens praktisch onderzoek op de OpenMRS referentie-applicatie is vastgesteld dat het FHIR `Appointment` resource type niet beschikbaar is in de geïnstalleerde versie. De Bahmni Appointment Scheduling module biedt daarentegen een werkende REST API met datumbereik-filtering, bevestigd via directe API-aanroepen op de lokale installatie.
 
-Polling via de FHIR API biedt het beste evenwicht: geen extra installatie aan OpenMRS-kant buiten de FHIR2 module, native FHIR-compliance, en robuust gedrag bij downtime aan beide kanten. Daarnaast schaalt de aanpak horizontaal: elke tenant is volledig onafhankelijk geconfigureerd, waardoor het toevoegen van een nieuwe OpenMRS-instantie geen impact heeft op bestaande tenants. Het nadeel van polling-latency is in dit domein acceptabel: notificaties worden 24 uur en 1 uur voor de afspraak verstuurd, waarbij een vertraging van maximaal 1 minuut geen klinisch verschil maakt.
+Webhooks lijken aantrekkelijk vanwege de real-time aard, maar het verlies van events bij downtime is in een medische context onaanvaardbaar zonder aanvullende retry-infrastructuur aan OpenMRS-kant die we niet kunnen garanderen. AtomFeed lost dit op maar introduceert installatieverplichtingen bij elke klant en een losstaand datamodel dat handmatig gekoppeld moet worden aan de Bahmni appointmentstructuur.
+
+Polling via de Bahmni REST API biedt het beste evenwicht: de module werkt met wat er daadwerkelijk beschikbaar is op de OpenMRS installatie, er is geen extra installatie nodig aan OpenMRS-kant, en het systeem is robuust bij downtime aan beide kanten. Daarnaast schaalt de aanpak horizontaal: elke tenant is volledig onafhankelijk geconfigureerd, waardoor het toevoegen van een nieuwe OpenMRS-instantie geen impact heeft op bestaande tenants. Het nadeel van polling-latency is in dit domein acceptabel: notificaties worden 24 uur en 1 uur voor de afspraak verstuurd, waarbij een vertraging van maximaal 1 minuut geen klinisch verschil maakt.
 
 ---
 ## Consequences
 Good, because:
-- De FHIR `/Appointment` resource geeft data terug in een gestandaardiseerd formaat, wat HL7-validatie aan onze kant eenvoudiger maakt
+- De Bahmni Appointments API is bevestigd werkend op de echte OpenMRS installatie via hands-on onderzoek
 - Bij downtime van de module gaan geen events verloren; bij herstel wordt de volgende polling-cyclus gewoon uitgevoerd
 - Nieuwe OpenMRS-instanties toevoegen is een kwestie van een endpoint en credentials registreren, zonder aanpassingen aan de OpenMRS-installatie zelf
 
 Neutraal, because:
 - De module moet idempotentie goed implementeren zodat een afspraak die al in de wachtrij staat niet opnieuw wordt ingepland bij de volgende poll
 - Het polling-interval moet zorgvuldig gekozen worden: te kort verhoogt de load op OpenMRS, te lang vergroot de kans op late detectie bij afspraken die kort van tevoren worden aangemaakt
+- Voor elke afspraak is een tweede API-call nodig om het telefoonnummer van de patiënt op te halen; dit verhoogt het aantal requests maar is onvermijdbaar gegeven de structuur van de API
 
 Bad, because:
 - Bij downtime van OpenMRS ziet de module tijdelijk geen nieuwe of gewijzigde afspraken; afspraken die tijdens die downtime worden aangemaakt kunnen hun 24-uurs notificatie missen als de downtime lang genoeg duurt
@@ -84,9 +89,10 @@ Bad, because:
 ---
 ## More information
 Implementatieaandachtspunten:
-- De FHIR2 module van OpenMRS moet geïnstalleerd zijn en Appointment-ondersteuning bevatten; dit is beschikbaar vanaf OpenMRS 2.7.x maar vereist expliciete verificatie bij onboarding van een nieuwe tenant
-- De module gebruikt de FHIR query `GET /fhir/Appointment?date=gt[now]&date=lt[now+25h]` om aankomende afspraken op te halen
+- De module gebruikt `POST /openmrs/ws/rest/v1/appointments/search` met een JSON body `{"startDate": "[now]", "endDate": "[now+25h]"}` om aankomende afspraken op te halen
+- Tijdstempels in de response zijn Unix milliseconden en worden geconverteerd naar `ZonedDateTime` rekening houdend met de tijdzone van de betreffende tenant
+- Voor het ophalen van het telefoonnummer van de patiënt wordt een tweede call gedaan naar `GET /openmrs/ws/rest/v1/patient/{uuid}`
+- De poller haalt bij elke gevonden afspraak direct ook de patiëntgegevens op en assembleert een volledig notificatiebericht. Dit bericht wordt als fat event op de RabbitMQ queue geplaatst zodat de notificatieworker geen aanvullende aanroepen naar OpenMRS hoeft te doen tijdens de verwerking. Dit voorkomt dat de worker temporeel gekoppeld raakt aan de beschikbaarheid van OpenMRS op het moment van notificatieverzending. Zie ook ADR 4.
 - Per tenant wordt de laatste succesvolle poll-timestamp opgeslagen zodat gemiste polls gedetecteerd kunnen worden
-- FHIR-responses worden gevalideerd op structuur en verplichte velden voordat ze de queue ingaan
-- Authenticatie richting OpenMRS verloopt via een per-tenant API-key die versleuteld wordt opgeslagen
-- De module ondersteunt meerdere OpenMRS-versies zolang de FHIR R4 API beschikbaar is, wat het geval is vanaf OpenMRS 2.7.x
+- Authenticatie richting OpenMRS verloopt via Basic Auth met een per-tenant gebruikersnaam en wachtwoord die versleuteld worden opgeslagen
+- De Bahmni Appointment Scheduling module moet geïnstalleerd zijn op de OpenMRS-instantie; dit wordt geverifieerd bij onboarding van een nieuwe tenant
