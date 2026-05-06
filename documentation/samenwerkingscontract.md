@@ -1,11 +1,12 @@
 ---
 teamleden:
- - Angel
- - Christian
- - Martijn
+  - Angel
+  - Christian
+  - Martijn
 ondertekenden:
- - Martijn
- - Angel
+  - Martijn
+  - Angel
+  - Christian
 ---
 
 # Samenwerkingscontract
