@@ -5,6 +5,7 @@ teamleden:
  - Martijn
 ondertekenden:
  - Martijn
+ - Angel
 ---
 
 # Samenwerkingscontract
