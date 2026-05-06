@@ -61,7 +61,7 @@ Nadelen:
 
 ---
 ## Decision Outcome
-**Gekozen: Optie A — Polling via de Bahmni Appointments REST API**
+**Gekozen: Optie A, Polling via de Bahmni Appointments REST API**
 
 **Justification**
 Tijdens praktisch onderzoek op de OpenMRS referentie-applicatie is vastgesteld dat het FHIR `Appointment` resource type niet beschikbaar is in de geïnstalleerde versie. De Bahmni Appointment Scheduling module biedt daarentegen een werkende REST API met datumbereik-filtering, bevestigd via directe API-aanroepen op de lokale installatie.
