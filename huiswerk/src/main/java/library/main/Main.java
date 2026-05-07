@@ -24,6 +24,8 @@ public class Main {
     public static void main(String[] args) {
         IMemberFactory iMemberFactory1 = new JSONMemberFactory();
         IMemberFactory iMemberFactory2 = new MySQLMemberFactory(); // for testing whether it is implemented
+        iMemberFactory1.GetMemberDAO().FindMember(1); // for testing whether it is implemented
+        iMemberFactory2.GetMemberDAO().FindMember(1); // for testing whether it is implemented
         MemberAdminManager manager = new MemberAdminManager(iMemberFactory1);
         MemberAdminUI ui = new MemberAdminUI(manager);
         SwingUtilities.invokeLater(ui);

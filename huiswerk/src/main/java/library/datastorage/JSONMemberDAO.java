@@ -5,11 +5,15 @@ import library.domain.Member;
 public class JSONMemberDAO implements IMemberDAO {
     @Override
     public Member FindMember(int identifier) {
-        return null;
+        throw new UnsupportedOperationException(
+                "Method not yet implemented"
+        );
     }
 
     @Override
     public boolean DeleteMember(int identifier) {
-        return false;
+        throw new UnsupportedOperationException(
+                "Method not yet implemented"
+        );
     }
 }

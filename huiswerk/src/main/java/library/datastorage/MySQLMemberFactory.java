@@ -3,6 +3,8 @@ package library.datastorage;
 public class MySQLMemberFactory implements IMemberFactory {
     @Override
     public IMemberDAO GetMemberDAO() {
-        return null;
+        throw new UnsupportedOperationException(
+                "Method not yet implemented"
+        );
     }
 }
