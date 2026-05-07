@@ -7,6 +7,8 @@ package library.applicationlogic;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import library.datastorage.IMemberFactory;
 import library.domain.*;
 
 /**
@@ -17,12 +19,12 @@ public class MemberAdminManager {
     
     private ArrayList<Member> members;
     private ArrayList<Book> books;
-    
-    public MemberAdminManager()
+    private IMemberFactory iMemberFactory;
+    public MemberAdminManager(IMemberFactory iMemberFactory)
     {
         members = new ArrayList();
         books = new ArrayList();
-        
+        this.iMemberFactory = iMemberFactory;
         fillTestData();
     }
 

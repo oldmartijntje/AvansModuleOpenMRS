@@ -5,6 +5,9 @@
 package library.main;
 
 import library.applicationlogic.MemberAdminManager;
+import library.datastorage.IMemberFactory;
+import library.datastorage.JSONMemberFactory;
+import library.datastorage.MySQLMemberFactory;
 import library.presentation.MemberAdminUI;
 
 import javax.swing.*;
@@ -19,8 +22,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        MemberAdminManager manager = new MemberAdminManager();
+        IMemberFactory iMemberFactory1 = new JSONMemberFactory();
+        IMemberFactory iMemberFactory2 = new MySQLMemberFactory(); // for testing whether it is implemented
+        MemberAdminManager manager = new MemberAdminManager(iMemberFactory1);
         MemberAdminUI ui = new MemberAdminUI(manager);
         SwingUtilities.invokeLater(ui);
     }
