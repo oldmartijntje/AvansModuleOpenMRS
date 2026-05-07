@@ -1,10 +1,13 @@
 package library.datastorage;
 
 public class JSONMemberFactory implements IMemberFactory {
-    @Override
+    private final IMemberDAO memberDAO;
+
+    public JSONMemberFactory() {
+        this.memberDAO = new JSONMemberDAO();
+    }
+
     public IMemberDAO GetMemberDAO() {
-        throw new UnsupportedOperationException(
-                "Method not yet implemented"
-        );
+        return this.memberDAO;
     }
 }

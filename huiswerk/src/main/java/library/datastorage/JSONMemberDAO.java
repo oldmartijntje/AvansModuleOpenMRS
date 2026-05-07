@@ -62,14 +62,12 @@ public class JSONMemberDAO implements IMemberDAO {
         members.add(new Member(1004, "Marcel", "Groot, de"));
     }
 
-    @Override
     public Member FindMember(int identifier) {
         throw new UnsupportedOperationException(
                 "Method not yet implemented"
         );
     }
 
-    @Override
     public boolean DeleteMember(Member member) {
         throw new UnsupportedOperationException(
                 "Method not yet implemented"
