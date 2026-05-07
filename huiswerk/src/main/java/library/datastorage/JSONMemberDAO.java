@@ -7,8 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class JSONMemberDAO implements IMemberDAO {
-    private ArrayList<Member> members;
-    private ArrayList<Book> books;
+    private ArrayList<Member> members = new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
 
     JSONMemberDAO() {
         Book aBook = new Book("978-0345803481", "Fifty Shades of Grey", "E L James", 1);
@@ -63,14 +63,41 @@ public class JSONMemberDAO implements IMemberDAO {
     }
 
     public Member FindMember(int identifier) {
-        throw new UnsupportedOperationException(
-                "Method not yet implemented"
-        );
+        Member member = null;
+
+        int index = 0;
+
+        while(member == null && index < members.size())
+        {
+            Member currentMember = members.get(index);
+
+            if(currentMember.getMembershipNumber() == identifier)
+            {
+                // Found the member!
+                member = currentMember;
+            }
+            else
+            {
+                // Not the correct member, try the next one in the list.
+                index++;
+            }
+        }
+
+        return member;
     }
 
     public boolean DeleteMember(Member member) {
-        throw new UnsupportedOperationException(
-                "Method not yet implemented"
-        );
+        boolean result = false;
+
+        if(member.isRemovable())
+        {
+            result = member.remove();
+        }
+        else
+        {
+            result = false;
+        }
+
+        return result;
     }
 }
