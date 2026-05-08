@@ -22,17 +22,17 @@ public class Member {
     private String phoneNumber;
     private String emailaddress;
     private double fine;
-    private String bsn;
+    private BurgerServiceNummer bsn;
     
     private ArrayList<Loan> loans;
     private ArrayList<Reservation> reservations;
             
-    public Member(int membershipNumber, String firstname, String lastname, String bsn)
+    public Member(int membershipNumber, String firstname, String lastname, BurgerServiceNummer nummer)
     {
         this.membershipNumber = membershipNumber;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.bsn = this.ValidateBSN(bsn) ? bsn : "invalid-bsn";
+        this.bsn = nummer;
 
         street = "";
         houseNumber = "";
@@ -43,11 +43,6 @@ public class Member {
         
         loans = new ArrayList();
         reservations = new ArrayList();
-    }
-
-    private boolean ValidateBSN(String member) {
-        // insert 11-proef here.
-        return true;
     }
     
     public String getLastname()
@@ -310,13 +305,5 @@ public class Member {
         }
 
         return result;
-    }
-
-    public String getBsn() {
-        return bsn;
-    }
-
-    public void setBsn(String nummer) {
-        this.bsn = this.ValidateBSN(nummer) ? nummer : "invalid-bsn";
     }
 }
