@@ -1,10 +1,10 @@
 package library.datastorage;
 
-public class MySQLMemberFactory implements IMemberFactory {
+public class JSONDAOFactory implements IDAOFactory {
     private final IMemberDAO memberDAO;
 
-    public MySQLMemberFactory() {
-        this.memberDAO = new MySQLMemberDAO();
+    public JSONDAOFactory() {
+        this.memberDAO = new JSONMemberDAO();
     }
 
     public IMemberDAO GetMemberDAO() {
