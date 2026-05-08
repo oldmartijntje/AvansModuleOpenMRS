@@ -306,4 +306,12 @@ public class Member {
 
         return result;
     }
+
+    public BurgerServiceNummer getBsn() {
+        return bsn;
+    }
+
+    public void setBsn(BurgerServiceNummer nummer) {
+        this.bsn = nummer;
+    }
 }
