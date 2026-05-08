@@ -27,7 +27,7 @@ public class MySQLMemberDAO implements IMemberDAO {
         aBook.addCopy(copyMulisch);
         books.add(bookMulisch);
 
-        Member aNewMember = new Member(1000, "Henk", "Hopper, de");
+        Member aNewMember = new Member(1000, "Henk", "Hopper, de", "fake-id");
 
         // Initialize a calendar object with today as the current day.
         Calendar c = Calendar.getInstance();
@@ -38,7 +38,7 @@ public class MySQLMemberDAO implements IMemberDAO {
         aNewMember.addLoan(new Loan(aNewMember, copyMulisch, c.getTime()));
         members.add(aNewMember);
 
-        aNewMember = new Member(1001, "Mara", "Machtig");
+        aNewMember = new Member(1001, "Mara", "Machtig", "fake-id");
         members.add(aNewMember);
         c.setTime(dateToday);
         c.add(Calendar.DATE, 8);
@@ -48,18 +48,18 @@ public class MySQLMemberDAO implements IMemberDAO {
         aReservation.setReservationDate(c.getTime());
         aNewMember.addReservation(aReservation);
 
-        aNewMember = new Member(1002, "Kees", "Kerfstok");
+        aNewMember = new Member(1002, "Kees", "Kerfstok", "fake-id");
         members.add(aNewMember);
         aReservation = new Reservation(aNewMember, bookMulisch);
         c.setTime(dateToday);
         aReservation.setReservationDate(c.getTime());
         aNewMember.addReservation(aReservation);
 
-        aNewMember = new Member(1003, "Anna", "Nas");
+        aNewMember = new Member(1003, "Anna", "Nas", "fake-id");
         aNewMember.setFine(5.25);
         members.add(aNewMember);
 
-        members.add(new Member(1004, "Cor", "Netto"));
+        members.add(new Member(1004, "Cor", "Netto", "fake-id"));
     }
 
     public Member FindMember(int identifier) {

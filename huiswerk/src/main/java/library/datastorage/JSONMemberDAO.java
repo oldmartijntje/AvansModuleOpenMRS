@@ -27,7 +27,7 @@ public class JSONMemberDAO implements IMemberDAO {
         aBook.addCopy(copyMulisch);
         books.add(bookMulisch);
 
-        Member aNewMember = new Member(1000, "Arno", "Broeders");
+        Member aNewMember = new Member(1000, "Arno", "Broeders", "fake-id");
 
         // Initialize a calendar object with today as the current day.
         Calendar c = Calendar.getInstance();
@@ -38,7 +38,7 @@ public class JSONMemberDAO implements IMemberDAO {
         aNewMember.addLoan(new Loan(aNewMember, copyMulisch, c.getTime()));
         members.add(aNewMember);
 
-        aNewMember = new Member(1001, "Hans", "Linden, van der");
+        aNewMember = new Member(1001, "Hans", "Linden, van der", "fake-id");
         members.add(aNewMember);
         c.setTime(dateToday);
         c.add(Calendar.DATE, 8);
@@ -48,18 +48,18 @@ public class JSONMemberDAO implements IMemberDAO {
         aReservation.setReservationDate(c.getTime());
         aNewMember.addReservation(aReservation);
 
-        aNewMember = new Member(1002, "Marc", "Mathijssen");
+        aNewMember = new Member(1002, "Marc", "Mathijssen", "fake-id");
         members.add(aNewMember);
         aReservation = new Reservation(aNewMember, bookMulisch);
         c.setTime(dateToday);
         aReservation.setReservationDate(c.getTime());
         aNewMember.addReservation(aReservation);
 
-        aNewMember = new Member(1003, "Robin", "Schellius");
+        aNewMember = new Member(1003, "Robin", "Schellius", "fake-id");
         aNewMember.setFine(5.25);
         members.add(aNewMember);
 
-        members.add(new Member(1004, "Marcel", "Groot, de"));
+        members.add(new Member(1004, "Marcel", "Groot, de", "fake-id"));
     }
 
     public Member FindMember(int identifier) {

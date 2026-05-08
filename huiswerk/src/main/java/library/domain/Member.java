@@ -22,16 +22,18 @@ public class Member {
     private String phoneNumber;
     private String emailaddress;
     private double fine;
+    private String bsn;
     
     private ArrayList<Loan> loans;
     private ArrayList<Reservation> reservations;
             
-    public Member(int membershipNumber, String firstname, String lastname)
+    public Member(int membershipNumber, String firstname, String lastname, String bsn)
     {
         this.membershipNumber = membershipNumber;
         this.firstname = firstname;
         this.lastname = lastname;
-        
+        this.bsn = bsn;
+
         street = "";
         houseNumber = "";
         city = "";
@@ -303,5 +305,13 @@ public class Member {
         }
 
         return result;
+    }
+
+    public String getBsn() {
+        return bsn;
+    }
+
+    public void setBsn(String nummer) {
+        this.bsn = nummer;
     }
 }
