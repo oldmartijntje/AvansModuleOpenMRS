@@ -1,7 +1,7 @@
 package library.domain;
 
-public class BurgerServiceNummer extends SocialSecurityNumber {
-    public BurgerServiceNummer(String nummer) {
+public class GermanSocialSecurityNumber extends SocialSecurityNumber {
+    public GermanSocialSecurityNumber(String nummer) {
         super(nummer);
     }
 

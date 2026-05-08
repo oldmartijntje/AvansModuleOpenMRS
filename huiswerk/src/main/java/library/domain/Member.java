@@ -18,21 +18,23 @@ public class Member {
     private String lastname;
     private String street;
     private String houseNumber;
+    private String nationality;
     private String city;
     private String phoneNumber;
     private String emailaddress;
     private double fine;
-    private BurgerServiceNummer bsn;
+    private SocialSecurityNumber ssn;
     
     private ArrayList<Loan> loans;
     private ArrayList<Reservation> reservations;
             
-    public Member(int membershipNumber, String firstname, String lastname, BurgerServiceNummer nummer)
+    public Member(int membershipNumber, String firstname, String lastname, String nummer, String nationality)
     {
         this.membershipNumber = membershipNumber;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.bsn = nummer;
+        this.nationality = nationality;
+        this.ssn = (this.nationality == "NL" ? new BurgerServiceNummer(nummer) : new GermanSocialSecurityNumber(nummer));
 
         street = "";
         houseNumber = "";
@@ -307,11 +309,11 @@ public class Member {
         return result;
     }
 
-    public BurgerServiceNummer getBsn() {
-        return bsn;
+    public SocialSecurityNumber getSsn() {
+        return ssn;
     }
 
-    public void setBsn(BurgerServiceNummer nummer) {
-        this.bsn = nummer;
+    public void setSsn(SocialSecurityNumber nummer) {
+        this.ssn = nummer;
     }
 }
