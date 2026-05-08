@@ -32,7 +32,7 @@ public class Member {
         this.membershipNumber = membershipNumber;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.bsn = bsn;
+        this.bsn = this.ValidateBSN(bsn) ? bsn : "invalid-bsn";
 
         street = "";
         houseNumber = "";
@@ -43,6 +43,11 @@ public class Member {
         
         loans = new ArrayList();
         reservations = new ArrayList();
+    }
+
+    private boolean ValidateBSN(String member) {
+        // insert 11-proef here.
+        return true;
     }
     
     public String getLastname()
@@ -312,6 +317,6 @@ public class Member {
     }
 
     public void setBsn(String nummer) {
-        this.bsn = nummer;
+        this.bsn = this.ValidateBSN(nummer) ? nummer : "invalid-bsn";
     }
 }
