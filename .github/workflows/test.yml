@@ -1,4 +1,4 @@
-name: Yeet
+name: Test-workflow
 
 on:
   push:
