@@ -1,0 +1,12 @@
+name: Yeet
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  yeet:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "yeet haha"
