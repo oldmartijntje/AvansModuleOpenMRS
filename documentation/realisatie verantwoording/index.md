@@ -1,0 +1,3 @@
+realisatie verantwoording is iets nieuws in de rubric. (dankje [[Marc]]), dit komt voort uit Marc zijn ongemak ofzo.
+[[Marc]] wilt een verantwoording van hoe we als team opschrijven welke AI tools je gebruikt, en hoe je het hebt ingezet. Dit is niet voor een oordeel, maar hoe we reflecteren op de tijdwinst hiervan, reflecteren op de kwaliteit van het product met de AI tool output. En voorbeelden van hoe we het gebruiken. Ben je afhankelijk geworden van AI, kan je nog programmeren als AI wegvalt?
+Als je ook nog eens een advies formuleert over hoe je dit beter doet, krijg je plus punten.

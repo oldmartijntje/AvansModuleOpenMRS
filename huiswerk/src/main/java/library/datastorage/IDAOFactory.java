@@ -1,5 +1,5 @@
 package library.datastorage;
 
-public interface IMemberFactory {
+public interface IDAOFactory {
     public IMemberDAO GetMemberDAO();
 }

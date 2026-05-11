@@ -7,8 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class JSONMemberDAO implements IMemberDAO {
-    private ArrayList<Member> members;
-    private ArrayList<Book> books;
+    private ArrayList<Member> members = new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
 
     JSONMemberDAO() {
         Book aBook = new Book("978-0345803481", "Fifty Shades of Grey", "E L James", 1);
@@ -27,7 +27,7 @@ public class JSONMemberDAO implements IMemberDAO {
         aBook.addCopy(copyMulisch);
         books.add(bookMulisch);
 
-        Member aNewMember = new Member(1000, "Arno", "Broeders");
+        Member aNewMember = new Member(1000, "Arno", "Broeders", "fake-id", "NL");
 
         // Initialize a calendar object with today as the current day.
         Calendar c = Calendar.getInstance();
@@ -38,7 +38,7 @@ public class JSONMemberDAO implements IMemberDAO {
         aNewMember.addLoan(new Loan(aNewMember, copyMulisch, c.getTime()));
         members.add(aNewMember);
 
-        aNewMember = new Member(1001, "Hans", "Linden, van der");
+        aNewMember = new Member(1001, "Hans", "Linden, van der", "fake-id", "BE");
         members.add(aNewMember);
         c.setTime(dateToday);
         c.add(Calendar.DATE, 8);
@@ -48,31 +48,56 @@ public class JSONMemberDAO implements IMemberDAO {
         aReservation.setReservationDate(c.getTime());
         aNewMember.addReservation(aReservation);
 
-        aNewMember = new Member(1002, "Marc", "Mathijssen");
+        aNewMember = new Member(1002, "Marc", "Mathijssen", "fake-id", "DE");
         members.add(aNewMember);
         aReservation = new Reservation(aNewMember, bookMulisch);
         c.setTime(dateToday);
         aReservation.setReservationDate(c.getTime());
         aNewMember.addReservation(aReservation);
 
-        aNewMember = new Member(1003, "Robin", "Schellius");
+        aNewMember = new Member(1003, "Robin", "Schellius", "fake-id", "NL");
         aNewMember.setFine(5.25);
         members.add(aNewMember);
 
-        members.add(new Member(1004, "Marcel", "Groot, de"));
+        members.add(new Member(1004, "Marcel", "Groot, de", "fake-id", "NL"));
     }
 
-    @Override
     public Member FindMember(int identifier) {
-        throw new UnsupportedOperationException(
-                "Method not yet implemented"
-        );
+        Member member = null;
+
+        int index = 0;
+
+        while(member == null && index < members.size())
+        {
+            Member currentMember = members.get(index);
+
+            if(currentMember.getMembershipNumber() == identifier)
+            {
+                // Found the member!
+                member = currentMember;
+            }
+            else
+            {
+                // Not the correct member, try the next one in the list.
+                index++;
+            }
+        }
+
+        return member;
     }
 
-    @Override
     public boolean DeleteMember(Member member) {
-        throw new UnsupportedOperationException(
-                "Method not yet implemented"
-        );
+        boolean result = false;
+
+        if(member.isRemovable())
+        {
+            result = member.remove();
+        }
+        else
+        {
+            result = false;
+        }
+
+        return result;
     }
 }

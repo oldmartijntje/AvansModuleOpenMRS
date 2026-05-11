@@ -4,11 +4,7 @@
  */
 package library.applicationlogic;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import library.datastorage.IMemberFactory;
+import library.datastorage.IDAOFactory;
 import library.domain.*;
 
 /**
@@ -17,8 +13,8 @@ import library.domain.*;
  */
 public class MemberAdminManager {
 
-    private IMemberFactory iMemberFactory;
-    public MemberAdminManager(IMemberFactory iMemberFactory)
+    private IDAOFactory iMemberFactory;
+    public MemberAdminManager(IDAOFactory iMemberFactory)
     {
         this.iMemberFactory = iMemberFactory;
     }
