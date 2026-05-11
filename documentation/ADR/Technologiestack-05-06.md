@@ -1,7 +1,12 @@
 ---
 status: Creating
 date: 2026-05-06
-deciders: angel, chris, martijn
+deciders: 
+- angel
+- chris
+- martijn
+tags:
+  - ADR
 ---
 
 # AD: technologiestack voor de communicatiemodule

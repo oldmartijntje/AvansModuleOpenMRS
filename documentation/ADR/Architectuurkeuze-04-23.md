@@ -1,7 +1,12 @@
 ---
 status: Accepted
 date: 2026-04-23
-deciders: angel, chris, martijn
+deciders: 
+- angel
+- chris
+- martijn
+tags:
+  - ADR
 ---
 
 # AD: zelfstandige module vs. ingebouwde module
