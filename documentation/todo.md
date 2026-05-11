@@ -16,12 +16,12 @@ kanban-plugin: board
 
 ## Doing
 
-- [ ] create a template for the realisatie verantwoording
 
 
 ## Done
 
 **Complete**
+- [x] create a template for the realisatie verantwoording
 - [x] create a templete for the adr
 
 
