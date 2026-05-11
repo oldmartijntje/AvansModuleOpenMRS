@@ -1,3 +1,11 @@
+---
+tags:
+  - ADR
+status: Accepted
+deciders: 
+- chris
+- martijn
+---
 ## Context and Problem Statement
 De communicatiemodule heeft een mechanisme nodig waarmee individuele OpenMRS-instanties afspraakgebeurtenissen kunnen doorzenden naar de centrale RabbitMQ infrastructuur. Dit is de kern van de integratie tussen het bestaande OpenMRS-systeem en de nieuwe communicatiemodule.
 

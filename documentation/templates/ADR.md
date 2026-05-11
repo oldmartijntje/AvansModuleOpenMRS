@@ -1,10 +1,13 @@
 ---
 status: Creating
-date: 2026-MM-DD
-deciders: unknown
+created: "{{date:YYYY-MM-DD}}T{{time:HH:mm}}:00"
+deciders: 
+- unknown
+tags:
+  - ADR
 ---
 
-# Title
+# {{title}}
 
 ## Context and Problem Statement
 

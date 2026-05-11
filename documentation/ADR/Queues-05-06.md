@@ -1,7 +1,12 @@
 ---
 status: Accepted
 date: 2026-05-06
-deciders: angel, chris, martijn
+deciders: 
+- angel
+- chris
+- martijn
+tags:
+  - ADR
 ---
 ## Context and Problem Statement
 De communicatiemodule moet afspraken ophalen bij OpenMRS, notificaties plannen op twee vaste momenten (24 uur en 1 uur voor de afspraak), en die notificaties asynchroon verwerken via een externe messaging provider. De vraag is hoe de communicatie tussen de poller, de scheduler en de notificatieworker wordt ingericht, en welke queuing infrastructuur daarvoor het meest geschikt is.
