@@ -1,6 +1,7 @@
 # LU1 Applicatie Integratie - Groepsopdracht
 
 **Deadline:** 26 mei 2026 23:59
+**Gekopieerd op:** 11 mei 2026 13:31
 
 ## Voorwaarden voor presentatie
 
