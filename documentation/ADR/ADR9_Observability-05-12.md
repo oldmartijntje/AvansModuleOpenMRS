@@ -127,5 +127,5 @@ Implementatieaandachtspunten:
 - Grafana draait als Docker container en is bereikbaar op poort 3000 via het interne Docker netwerk
 - W3C Trace Context propagation wordt geïmplementeerd via `TextMapPropagator` uit de OpenTelemetry Java API in combinatie met Spring AMQP `MessagePostProcessor`
 - De service name per container wordt geconfigureerd via de environment variabele `OTEL_SERVICE_NAME` met waarden `inbound-processor`, `scheduler` en `notification-worker`
-- Zie ADR 6 voor de drie-container architectuur waarop deze observability stack van toepassing is
-- Zie ADR 8 voor de logging restricties rondom patiëntdata die ook van toepassing zijn op de telemetry pipeline
+- Zie [[ADR6_Drie_Container_Architectuur-05-12|ADR 6]] voor de drie-container architectuur waarop deze observability stack van toepassing is
+- Zie [[ADR8_Beveiliging-05-12|ADR 8]] voor de logging restricties rondom patiëntdata die ook van toepassing zijn op de telemetry pipeline

@@ -83,5 +83,5 @@ Implementatieaandachtspunten:
 - Container 1 exposeert het endpoint `POST /api/cancellation` voor inkomende provider webhooks
 - De OpenMRS REST call voor annulering verloopt via `POST /openmrs/ws/rest/v1/appointments/{uuid}/status` met Basic Auth credentials per tenant
 - De timeout-check voor PENDING_CANCELLATION wordt uitgevoerd door container 2 als onderdeel van de reguliere scheduler-cyclus
-- Zie ADR 4 voor het queue-ontwerp inclusief `cancellation.queue`
-- Zie ADR 6 voor de verantwoordelijkheidsverdeling tussen de drie containers
+- Zie [[ADR4_Queues-05-06|ADR 4]] voor het queue-ontwerp inclusief `cancellation.queue`
+- Zie [[ADR6_Drie_Container_Architectuur-05-12|ADR 6]] voor de verantwoordelijkheidsverdeling tussen de drie containers

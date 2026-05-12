@@ -70,5 +70,5 @@ Implementatieaandachtspunten:
 - De AES-256 encryptiesleutel voor berichtversleuteling op RabbitMQ wordt gedeeld tussen de OpenMRS plugin en container 1 via de global property `communicatie.encryption.key` en de environment variabele `AMQP_ENCRYPTION_KEY`
 - Spring Boot applicaties gebruiken geen hardcoded wachtwoorden; alle secrets worden geladen via `@Value` annotaties gekoppeld aan environment variabelen
 - Docker Compose bestanden met environment variabelen worden nooit gecommit naar de git repository; een `.env.example` bestand met lege waarden wordt als template meegeleverd
-- Zie ADR 4 voor de RabbitMQ infrastructuur waarop deze beveiligingsmaatregelen van toepassing zijn
-- Zie ADR 6 voor de container architectuur waarop de authenticatie en autorisatie per container van toepassing zijn
+- Zie [[ADR4_Queues-05-06|ADR 4]]voor de RabbitMQ infrastructuur waarop deze beveiligingsmaatregelen van toepassing zijn
+- Zie [[ADR6_Drie_Container_Architectuur-05-12|ADR 6]] voor de container architectuur waarop de authenticatie en autorisatie per container van toepassing zijn

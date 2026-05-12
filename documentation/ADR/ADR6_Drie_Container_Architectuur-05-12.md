@@ -98,4 +98,4 @@ Implementatieaandachtspunten:
 - Container 3 kan worden geschaald via `docker compose up --scale notification-worker=3`
 - Alle drie containers exporteren metrics via OpenTelemetry naar Prometheus en zijn zichtbaar in het gezamenlijke Grafana dashboard
 - De Docker Compose health check volgorde is: MariaDB en RabbitMQ starten eerst, daarna container 1, daarna container 2, daarna container 3
-- Zie ADR 4 voor het queue-ontwerp dat de communicatie tussen de containers mogelijk maakt
+- Zie [[ADR4_Queues-05-06|ADR 4]] voor het queue-ontwerp dat de communicatie tussen de containers mogelijk maakt
