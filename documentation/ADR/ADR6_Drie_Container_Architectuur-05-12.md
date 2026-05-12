@@ -2,9 +2,10 @@
 tags:
   - ADR
 status: Accepted
-deciders: 
-- chris
-- martijn
+deciders:
+  - chris
+  - martijn
+  - angel
 ---
 ## Context and Problem Statement
 De communicatiemodule bestaat uit meerdere functioneel gescheiden verantwoordelijkheden: het ontvangen en opslaan van afspraakdata, het plannen van notificaties op de juiste momenten, en het daadwerkelijk versturen van notificaties via externe providers. De vraag is hoe deze verantwoordelijkheden worden verdeeld over de applicatiecode en de deploymentinfrastructuur.
