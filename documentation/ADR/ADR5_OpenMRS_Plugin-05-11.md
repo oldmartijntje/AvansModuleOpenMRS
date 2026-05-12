@@ -2,9 +2,10 @@
 tags:
   - ADR
 status: Accepted
-deciders: 
-- chris
-- martijn
+deciders:
+  - chris
+  - martijn
+  - angel
 ---
 ## Context and Problem Statement
 De communicatiemodule heeft een mechanisme nodig waarmee individuele OpenMRS-instanties afspraakgebeurtenissen kunnen doorzenden naar de centrale externe RabbitMQ exchange op de VPS. Dit is de ingang van de gehele pipeline: zonder correcte events vanuit OpenMRS ontvangt de inbound processor (container 1) geen data en worden er geen notificaties verstuurd.
