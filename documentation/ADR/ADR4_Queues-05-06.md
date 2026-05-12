@@ -110,7 +110,7 @@ Implementatieaandachtspunten:
 - Container 3 gebruikt `@RabbitListener` op `notification.queue`
 - De dead-letter queue wordt gekoppeld via een `x-dead-letter-exchange` argument op `notification.queue`
 - Alle drie containers starten pas als RabbitMQ de health check heeft doorstaan via `depends_on` met `condition: service_healthy` in Docker Compose
-- Zie ADR 3 voor de motivatie achter de event-driven integratie met OpenMRS
-- Zie ADR 5 voor de plugin architectuur die berichten publiceert naar de externe queue
+- Zie [[ADR3_Integratiemethode-05-06|ADR 3]] voor de motivatie achter de event-driven integratie met OpenMRS
+- Zie [[ADR5_OpenMRS_Plugin-05-11|ADR 5]] voor de plugin architectuur die berichten publiceert naar de externe queue
 - Zie ADR 6 voor de drie-container architectuur beslissing
 - Zie ADR 8 voor de beveiligingseisen rondom de RabbitMQ infrastructuur

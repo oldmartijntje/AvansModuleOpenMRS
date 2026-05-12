@@ -112,6 +112,6 @@ Implementatieaandachtspunten:
 - De RabbitMQ verbindingsURL wordt gelezen uit de OpenMRS global property `communicatie.rabbitmq.url`
 - De externe RabbitMQ draait als Docker container op de centrale VPS en is bereikbaar op poort 5671 via TLS
 - De inbound processor (container 1) consumeert van de externe RabbitMQ queue en schrijft naar de gedeelde MariaDB database
-- Zie ADR 5 voor de volledige plugin architectuur en implementatiedetails
-- Zie ADR 4 voor het volledige queue en exchange ontwerp
+- Zie [[ADR5_OpenMRS_Plugin-05-11|ADR 5]] voor de volledige plugin architectuur en implementatiedetails
+- Zie [[ADR4_Queues-05-06|ADR 4]] voor het volledige queue en exchange ontwerp
 - Zie ADR 6 voor de drie-container architectuur beslissing
