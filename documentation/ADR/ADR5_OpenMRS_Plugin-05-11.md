@@ -123,5 +123,5 @@ Implementatieaandachtspunten:
 - De plugin verbindt met de externe RabbitMQ via TLS 1.3 op poort 5671
 - Zie [[ADR4_Queues-05-06|ADR 4]] voor het volledige queue en exchange ontwerp
 - Zie [[ADR3_Integratiemethode-05-06|ADR 3]] voor de motivatie achter de keuze voor event-driven integratie boven polling
-- Zie ADR 6 voor de drie-container architectuur die de plugin als ingang gebruikt
-- Zie ADR 8 voor de beveiligingseisen rondom de RabbitMQ verbinding vanuit de plugin
+- Zie [[ADR6_Drie_Container_Architectuur-05-12|ADR 6]] voor de drie-container architectuur die de plugin als ingang gebruikt
+- Zie [[ADR8_Beveiliging-05-12|ADR 8]] voor de beveiligingseisen rondom de RabbitMQ verbinding vanuit de plugin
