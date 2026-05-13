@@ -20,10 +20,6 @@
 	<require_version>2.7.6</require_version>
 	
 	<!-- Extensions -->
-	<extension>
-		<point>org.openmrs.admin.list</point>
-		<class>org.openmrs.module.bahmni.appointment.forwarder.extension.html.AdminList</class>
-	</extension>
 
 	<aware_of_modules>
 		<aware_of_module>org.openmrs.module.legacyui</aware_of_module>
@@ -46,17 +42,33 @@
 	 /Required Privileges -->
 
 
-	<!-- Required Global Properties 
+	<!-- Required Global Properties -->
 	<globalProperty>
-		<property>@MODULE_ID@.someProperty</property>
+		<property>communicatie.tenantId</property>
 		<defaultValue></defaultValue>
 		<description>
-			A description of the global property goes here.  The description
-			should explain enough for administrators to understand the purpose
-			and possible values for the global property.
+			Unique identifier for this OpenMRS tenant in the communication module.
+			Set this during onboarding. Example: hospital-amsterdam
 		</description>
 	</globalProperty>
-	/Required Global Properties -->
+
+	<globalProperty>
+    	<property>communicatie.rabbitmq.url</property>
+    	<defaultValue></defaultValue>
+    	<description>
+        	Connection URL for the central RabbitMQ instance.
+        	Format: amqp://username:password@host:port/
+        	Set this via the OpenMRS admin interface, never hardcode credentials here.
+    	</description>
+	</globalProperty>
+	<globalProperty>
+    	<property>communicatie.encryption.key</property>
+    	<defaultValue></defaultValue>
+    	<description>
+        	AES-256 encryption key for encrypting message payloads before publishing to RabbitMQ.
+        	Must be exactly 32 characters.
+    	</description>
+	</globalProperty>
 	
 	<!--
 	<dwr>

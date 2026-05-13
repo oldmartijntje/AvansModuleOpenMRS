@@ -11,4 +11,12 @@
 	<packaging>jar</packaging>
 	<name>Bahmni Appointment Forwarder API</name>
 	<description>API project for Bahmni Appointment Forwarder</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.rabbitmq</groupId>
+			<artifactId>amqp-client</artifactId>
+			<version>5.20.0</version>
+		</dependency>
+	</dependencies>	
 </project>
